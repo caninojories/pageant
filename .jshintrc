@@ -2,7 +2,7 @@
   "bitwise":   true,
   "browser":   true,
   "camelcase": false,
-  "curly":     true,
+  "curly":     false,
   "esnext":    true,
   "eqeqeq":    true,
   "expr":      true,
@@ -17,10 +17,12 @@
   "smarttabs": true,
   "strict":    true,
   "trailing":  true,
+  "validthis": true,
   "undef":     true,
   "unused":    false,
   "predef"   : [
     "angular",
+    "app_require",
     "toastr",
     "jcaLayout"
   ]
