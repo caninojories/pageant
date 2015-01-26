@@ -25,6 +25,16 @@
       cfpLoadingBarProvider.latencyThreshold = 100;
       $authProvider.loginUrl = 'http://localhost:3000/userApi/userLogIn';
       $authProvider.signupUrl = 'http://localhost:3000/userApi/userRegister';
+
+      $authProvider.facebook({
+        clientId: '789445017793242',
+        url: 'http://localhost:3000/userApi/logInUserFacebook'
+      });
+
+      $authProvider.google({
+        clientId: '514855305579-vmrkir3l76c0v2t6b5mtnphh38uf9irp.apps.googleusercontent.com',
+        url: 'http://localhost:3000/userApi/logInUserGoogle'
+      });
     }
 
     /* @ngInject */

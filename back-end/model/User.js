@@ -7,11 +7,12 @@
   var UserSchema = new mongoose.Schema({
     email: {
       type: String,
-      required: true,
       unique: true,
     },
     password: String,
     username: String,
+    firstName: String,
+    lastName: String,
     googleId: String,
     facebookId: String,
     displayName: String

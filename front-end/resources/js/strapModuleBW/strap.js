@@ -40,7 +40,6 @@
       }
 
       function logInUser() {
-        // $logInUserModal.show();
         strapModal.show( 'am-fade-and-scale', 'center', '/commonViews/login.html');
       }
 
@@ -51,6 +50,7 @@
       function authenticate( provider ) {
         $auth.authenticate( provider )
         .then(function( response ) {
+          $rootScope.username = response.data.user.displayName || response.data.user.username;
           vm.isAuthenticated = $auth.isAuthenticated;
         }, function( err ) {
           if( err ) throw err;

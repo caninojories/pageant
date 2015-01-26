@@ -8,7 +8,10 @@
 
   module.exports = {
     clusterService    : require( './cluster' ),
+    config            : require( './config' ),
     createSendToken   : require( './createSendToken' ),
+    facebookAuth      : require( './facebookAuth' ),
+    googleAuth        : require( './googleAuth' ),
     User              : require( '../model/User' ),
     mongoDB           : require( '../configuration/mongodb' ),
     bodyParser        : require( 'body-parser' ),
@@ -30,6 +33,8 @@
     nunjucksEnv       : new nunjucks.Environment(new nunjucks.FileSystemLoader(path.join(rootPath, 'views'))),
     passport          : require( 'passport' ),
     Promise           : require( 'bluebird' ),
+    qs                : require( 'querystring' ),
+    request           : require( 'request-promise' ),
     url               : require( 'url' ),
 
     faviconPath       : rootPath + 'front-end/resources/favicon.ico',

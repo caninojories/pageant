@@ -17,7 +17,9 @@
       .then(function() {
         node.User
         .findById( payLoad.sub, function( err, document ) {
-          res.json( document.username );
+          var name = document.displayName || document.username;
+
+          res.json( name );
         });
       });
   };
@@ -29,7 +31,7 @@
       node.User.findOne({email: query.email}, function( err, user ) {
         if( err ) throw err;
         if( user ) return res.status(201).send( user );
-        res.status(201).send( user );
+        res.status(200).send( user );
       });
     });
   };

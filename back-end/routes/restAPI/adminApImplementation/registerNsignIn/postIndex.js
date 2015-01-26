@@ -18,7 +18,7 @@
     })(req, res, next );
   };
 
-  exports.googleLogin = function( req, res, next ) {
+  exports.postGoogleLogin = function( req, res, next ) {
     var params = {
       client_id: req.body.clientId,
       redirect_uri: req.body.redirectUri,
@@ -30,7 +30,7 @@
     node.googleAuth( node, params, res );
   };
 
-  exports.facebookLogin = function( req, res, next ) {
+  exports.postFacebookLogin = function( req, res, next ) {
     var params = {
       client_id: req.body.clientId,
       redirect_uri: req.body.redirectUri,

@@ -49,7 +49,7 @@
         }).then(function( response ) {
           $rootScope.username = vm.username;
           strapModal.hide();
-          strapAlert.show( 'Success', '100% success Registered' );
+          strapAlert.show( 'Success!', 'Your account has been successfully created' );
           $timeout(function() {
             strapAlert.hide();
           }, 2000);
@@ -66,7 +66,6 @@
           password: vm.password
         }).then(function( response ) {
           $rootScope.username = response.data.user.username;
-          console.log( response );
           strapModal.hide();
         }).catch(function( error ) {
           strapAlert.show( 'Something, went wrong!', 'Wrong email/password', 'alert-logIn' );
