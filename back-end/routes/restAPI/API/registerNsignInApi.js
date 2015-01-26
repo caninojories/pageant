@@ -5,13 +5,21 @@
       app  = node.express(),
 
   POST_RegisterUser = require( '../adminApImplementation/registerNsignIn/postIndex.js' ),
-  GET_UserInfo      = require( '../adminApImplementation/registerNsignIn/getIndex.js' );
+  GET_UserInfo      = require( '../adminApImplementation/registerNsignIn/getIndex.js' ),
+  GET_EmailInfo     = require( '../adminApImplementation/registerNsignIn/getIndex.js' ),
+  POST_UserLogin    = require( '../adminApImplementation/registerNsignIn/postIndex.js' );
 
     app.route( '/userApi/userRegister' )
       .post( node.passport.authenticate('local-register'), POST_RegisterUser.registerUser );
 
     app.route( '/userApi/userInfo' )
       .get( GET_UserInfo.getUserInfo );
+
+    app.route( '/userApi/userLogin' )
+      .post( POST_UserLogin.postUserLogin );
+
+    app.route( '/userApi/isEmailTaken' )
+      .get( GET_EmailInfo.getEmail );
 
   module.exports = app;
 

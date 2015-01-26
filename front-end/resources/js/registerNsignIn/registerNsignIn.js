@@ -5,17 +5,39 @@
     .module( 'app.registerNsignIn' )
     .controller( 'RegisterNSignIn',  RegisterNSignIn );
 
-    RegisterNSignIn.$inject = [ '$timeout', '$auth', '$rootScope', 'authToken', 'strapAlert', 'strapModal' ];
+    RegisterNSignIn.$inject = [ '$q','$timeout', '$auth', '$rootScope', 'authToken',
+    'strapAlert', 'strapModal', 'commonsDataService' ];
 
-    function RegisterNSignIn( $timeout, $auth, $rootScope, authToken, strapAlert, strapModal ) {
+    function RegisterNSignIn( $q, $timeout, $auth, $rootScope, authToken,
+      strapAlert, strapModal, commonsDataService ) {
       var vm = this;
 
       /* Literals */
       vm.token = authToken.getToken();
       /* Functions */
+      vm.checkEmailInBlurred = checkEmailInBlurred;
       vm.register = register;
       vm.login    = login;
 
+
+      function checkEmailInBlurred( signupForm ) {
+        return $q.all( [checkEmailInBlurredCallBack()] )
+          .then(function( response ) {
+            console.log( response );
+            if( response[0] !== undefined ) signupForm.email.$setValidity( 'taken', false );
+            else signupForm.email.$setValidity( 'taken', true );
+
+            return response;
+          });
+      }
+
+      function checkEmailInBlurredCallBack() {
+        return commonsDataService
+          .checkEmail( 'isEmailTaken', {email: vm.email} )
+          .then(function( response ) {
+            return response;
+          });
+      }
 
       function register( registerFormIsValid ) {
         if( registerFormIsValid !== true ) return;
@@ -31,6 +53,8 @@
           $timeout(function() {
             strapAlert.hide();
           }, 2000);
+        }).catch(function( response ) {
+          console.log( response );
         });
       }
 
@@ -41,9 +65,11 @@
           email: vm.email,
           password: vm.password
         }).then(function( response ) {
+          $rootScope.username = response.data.user.username;
+          console.log( response );
           strapModal.hide();
         }).catch(function( error ) {
-          strapAlert.show( 'Error', 'Error Message' );
+          strapAlert.show( 'Something, went wrong!', 'Wrong email/password', 'alert-logIn' );
           $timeout(function() {
             strapAlert.hide();
           }, 2000 );
@@ -52,13 +78,13 @@
 
       function loginCallBack() {
         return commonsDataService
-        .login( 'userLogIn', {
-          email: vm.email,
-          password: vm.password
-        })
-        .then(function( response ) {
-          return response;
-        });
+          .login( 'userLogIn', {
+            email: vm.email,
+            password: vm.password
+          })
+          .then(function( response ) {
+            return response;
+          });
       }
     }
 }());

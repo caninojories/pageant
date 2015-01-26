@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         <div class='form-group' ng-class="{ 'has-error' : loginForm.email.$invalid &amp;&amp; !loginForm.email.$pristine}">
-          <alertLogIn></alertLogIn>
+          <alert-logIn></alert-logIn>
           <label>Email</label>
           <input class="form-control" type="email" name="email" required ng-model="vm.email" ng-minlength="0" />
           <div class='help-block' ng-show="loginForm.email.$error.required &amp;&amp; loginForm.email.$dirty ">

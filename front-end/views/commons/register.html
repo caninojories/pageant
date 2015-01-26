@@ -9,7 +9,7 @@
         <div class='modal-body'>
           <div class='form-group'  ng-class="{ 'has-error' : signupForm.email.$invalid &amp;&amp; !signupForm.email.$pristine}">
             <label class='control-label'>Email</label>
-            <input type='email' name='email' ng-model='vm.email' class='form-control' required ng-blur='vm.blurred(signupForm)'>
+            <input type='email' name='email' ng-model='vm.email' class='form-control' required ng-blur='vm.checkEmailInBlurred(signupForm)'>
             <div class='help-block' ng-show='signupForm.email.$dirty && signupForm.email.$error.required'>
               An email address is required
             </div>

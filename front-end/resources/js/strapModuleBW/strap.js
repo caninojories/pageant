@@ -23,7 +23,6 @@
       function getAuthorization() {
         $q.all( [getAuthorizationCallBack()] )
         .then(function( response ) {
-          console.log( response );
           $rootScope.username = response[0];
           return response;
         });
@@ -31,9 +30,9 @@
 
       function getAuthorizationCallBack() {
         return commonsDataService.authorize()
-        .then(function( response ) {
-          return response;
-        });
+          .then(function( response ) {
+            return response;
+          });
       }
 
       function registerUser() {

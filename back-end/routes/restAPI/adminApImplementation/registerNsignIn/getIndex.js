@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var node    = app_require( 'services/module.config' );
+  var node = app_require( 'services/module.config' );
 
   exports.getUserInfo = function( req, res, next ) {
     var token = req.query.token;
@@ -17,9 +17,20 @@
       .then(function() {
         node.User
         .findById( payLoad.sub, function( err, document ) {
-          console.log( document.username );
           res.json( document.username );
         });
       });
+  };
+
+  exports.getEmail = function( req, res, next ) {
+    var query = node.url.parse( req.url, true ).query;
+    node.mongoDB( node, 'pageant' )
+    .then(function( connection ) {
+      node.User.findOne({email: query.email}, function( err, user ) {
+        if( err ) throw err;
+        if( user ) return res.status(201).send( user );
+        res.status(201).send( user );
+      });
+    });
   };
 }());

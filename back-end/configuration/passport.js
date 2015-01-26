@@ -26,6 +26,7 @@
             if( !isMatch ) return done( null, false, {
               message: 'Wrong email/password'
             });
+            console.log( user );
             return done( null, user);
           });
         });
@@ -48,21 +49,10 @@
       })
       .then( function( user ) {
         user.save(function(err) {
+          if( err ) return done( null, false );
           done( null, user );
         });
       });
     }));
-    //
-    // passport.authenticate('local'),
-    // function(req, res) {
-    //   // If this function gets called, authentication was successful.
-    //   // `req.user` contains the authenticated user.
-    //   res.redirect('/users/' + req.user.username);
-    // });
-
-    passport.use( 'local-register-authenticate',
-      function( req, res ) {
-        console.log( 'jories' );
-      });
   };
 }());

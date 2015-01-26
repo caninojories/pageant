@@ -7,7 +7,7 @@
     node.createSendToken( node, req.user, res );
   };
 
-  exports.userLogIn = function( req, res, next ) {
+  exports.postUserLogin = function( req, res, next ) {
     node.passport.authenticate('local-login', function(err, user) {
       if( err ) next( err );
 

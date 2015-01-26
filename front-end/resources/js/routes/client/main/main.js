@@ -9,7 +9,5 @@
 
     function Main( $rootScope ) {
       var vm = this;
-      console.log( $rootScope );
-      console.log( vm.name );
     }
 }());

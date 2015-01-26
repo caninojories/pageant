@@ -10,19 +10,23 @@
   function strapModal( $alert ) {
     var vm = this;
 
+    /* Literals */
+    vm.alerObj = null;
+    /* Functions */
     vm.alert = alert;
     vm.show  = show;
     vm.hide  = hide;
 
-    function show( title, content, type, container ) {
-      vm.alert = vm.alert( title, content, type, container );
+
+    function show( title, content, container, type ) {
+      vm.alerObj = vm.alert( title, content, container, type );
     }
 
     function hide() {
-      vm.alert.hide();
+      vm.alerObj.hide();
     }
 
-    function alert( title, content, type, container ) {
+    function alert( title, content, container, type ) {
       var strapAlert = $alert({
         title: title,
         content: content,
